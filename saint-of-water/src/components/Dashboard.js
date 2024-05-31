@@ -21,8 +21,11 @@ const storage = getStorage(app);
 const Dashboard = () => {
   const [img, setImg] = useState(null);
   const [video, setVideo] = useState(null);
+  const [bulletinTitle, setBulletinTitle] = useState('');
+  const [bulletinContent, setBulletinContent] = useState('');
   const [imgUploadSuccess, setImgUploadSuccess] = useState(false);
   const [videoUploadSuccess, setVideoUploadSuccess] = useState(false);
+  const [bulletinUploadSuccess, setBulletinUploadSuccess] = useState(false);
   const [error, setError] = useState(null);
 
   const handleFileChange = (e, fileType) => {
@@ -41,22 +44,25 @@ const Dashboard = () => {
         getDownloadURL(snapshot.ref).then(url => {
           setImgUploadSuccess(true);
           setVideoUploadSuccess(false);
+          setBulletinUploadSuccess(false);
           setError(null);
         }).catch(error => {
           setImgUploadSuccess(false);
           setVideoUploadSuccess(false);
+          setBulletinUploadSuccess(false);
           setError('Error getting download URL for image');
           console.error('Error getting download URL for image', error);
         });
       }).catch(error => {
         setImgUploadSuccess(false);
         setVideoUploadSuccess(false);
+        setBulletinUploadSuccess(false);
         setError('Error uploading image');
         console.error('Error uploading image', error);
       });
     }
   };
-  
+
   const handleVideoUpload = () => {
     if (video) {
       const videoRef = ref(storage, `videos/${uuidv4()}`); // Store videos in the 'videos' folder
@@ -64,27 +70,55 @@ const Dashboard = () => {
         getDownloadURL(snapshot.ref).then(url => {
           setVideoUploadSuccess(true);
           setImgUploadSuccess(false);
+          setBulletinUploadSuccess(false);
           setError(null);
         }).catch(error => {
           setVideoUploadSuccess(false);
           setImgUploadSuccess(false);
+          setBulletinUploadSuccess(false);
           setError('Error getting download URL for video');
           console.error('Error getting download URL for video', error);
         });
       }).catch(error => {
         setVideoUploadSuccess(false);
         setImgUploadSuccess(false);
+        setBulletinUploadSuccess(false);
         setError('Error uploading video');
         console.error('Error uploading video', error);
       });
     }
   };
-  
-  
+
+  const handleBulletinUpload = () => {
+    if (bulletinTitle && bulletinContent) {
+      const bulletinRef = ref(storage, `txt/${uuidv4()}.txt`);
+      const bulletinBlob = new Blob([`Title: ${bulletinTitle}\n\nContent: ${bulletinContent}`], { type: 'text/plain' });
+      uploadBytes(bulletinRef, bulletinBlob).then(snapshot => {
+        getDownloadURL(snapshot.ref).then(url => {
+          setBulletinUploadSuccess(true);
+          setImgUploadSuccess(false);
+          setVideoUploadSuccess(false);
+          setError(null);
+        }).catch(error => {
+          setBulletinUploadSuccess(false);
+          setImgUploadSuccess(false);
+          setVideoUploadSuccess(false);
+          setError('Error getting download URL for bulletin');
+          console.error('Error getting download URL for bulletin', error);
+        });
+      }).catch(error => {
+        setBulletinUploadSuccess(false);
+        setImgUploadSuccess(false);
+        setVideoUploadSuccess(false);
+        setError('Error uploading bulletin');
+        console.error('Error uploading bulletin', error);
+      });
+    }
+  };
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4">Image and Video Upload Component</Typography>
+      <Typography variant="h4">Image, Video, and Bulletin Upload Component</Typography>
       <Box sx={{ mt: 2 }}>
         <Typography variant="subtitle1">Upload Image:</Typography>
         <TextField type="file" onChange={(e) => handleFileChange(e, 'image')} />
@@ -100,6 +134,29 @@ const Dashboard = () => {
           Upload Video
         </Button>
         {videoUploadSuccess && <Typography variant="body1" sx={{ mt: 1, color: 'green' }}>Video uploaded successfully!</Typography>}
+      </Box>
+      <Box sx={{ mt: 3 }}>
+        <Typography variant="subtitle1">Post Bulletin:</Typography>
+        <TextField
+          label="Title"
+          value={bulletinTitle}
+          onChange={(e) => setBulletinTitle(e.target.value)}
+          fullWidth
+          sx={{ mt: 1 }}
+        />
+        <TextField
+          label="Content"
+          value={bulletinContent}
+          onChange={(e) => setBulletinContent(e.target.value)}
+          fullWidth
+          multiline
+          rows={4}
+          sx={{ mt: 1 }}
+        />
+        <Button variant="contained" color="primary" onClick={handleBulletinUpload} sx={{ mt: 1 }}>
+          Post Bulletin
+        </Button>
+        {bulletinUploadSuccess && <Typography variant="body1" sx={{ mt: 1, color: 'green' }}>Bulletin posted successfully!</Typography>}
       </Box>
       {error && <Typography variant="body1" sx={{ mt: 1, color: 'red' }}>{error}</Typography>}
     </Box>

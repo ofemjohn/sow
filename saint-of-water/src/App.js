@@ -4,7 +4,7 @@ import './App.css';
 import LandingPage from './LandingPage';
 import SignInSide from './components/SignInSide';
 import Dashboard from './components/Dashboard';
-// import ImageUpload from './components/ImageUpload';
+import Gallery from './components/Gallery';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<SignInSide />} />
           <Route path="/admin" element={<Dashboard />} />
-          {/* <Route path="/test" element={<ImageUpload />} /> */}
+          <Route path="/gallery" element={<Gallery />} />
         </Routes>
       </Box>
     </Router>

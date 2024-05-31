@@ -10,8 +10,8 @@ import Hero from './components/Hero';
 // import LogoCollection from './components/LogoCollection';
 import Highlights from './components/Highlights';
 import Pricing from './components/Pricing';
-import Features from './components/Features';
-import Testimonials from './components/Testimonials';
+// import Features from './components/Feature';
+import Gallery from './components/Gallery';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import getLPTheme from './getLPTheme';
@@ -61,9 +61,10 @@ export default function LandingPage() {
       <Hero />
       <Box sx={{ bgcolor: 'background.default' }}>
         {/* <LogoCollection /> */}
-        <Features />
         <Divider />
-        <Testimonials />
+        {/* <Features /> */}
+        <Divider />
+        <Gallery />
         <Divider />
         <Highlights />
         <Divider />

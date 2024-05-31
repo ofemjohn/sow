@@ -1,13 +1,8 @@
-import * as React from 'react';
-import { alpha } from '@mui/material';
-import Box from '@mui/material/Box';
-// import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-// import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-// import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import sowlogo from '../images/sowlogo.png'
+import React from 'react';
+import { alpha, Box, Container, Stack, Typography } from '@mui/material';
+import DemoPaper from './DemoPaper';
+import sowlogo from '../images/sowlogo.png';
+
 
 
 
@@ -16,7 +11,7 @@ const logoStyle = {
   height: 'auto',
   cursor: 'pointer',
   borderRadius: '50%',
-  marginTop: '20px'
+  marginTop: '20px',
 };
 
 export default function Hero() {
@@ -50,75 +45,63 @@ export default function Hero() {
               flexDirection: { xs: 'column', md: 'row' },
               alignSelf: 'center',
               textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 1.5rem)',
+              fontSize: 'clamp(4rem, 10vw, 2rem)',
+              color: '#72AA82',
             }}
           >
-            The Redeemed Christian Church of God&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={{
-                fontSize: 'clamp(2rem, 5vw, 2rem)',
-                color: (theme) =>
-                  theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
-              }}
-            >
-              Saint of Water Parish
-            </Typography>
+            The Redeemed Christian Church of God
           </Typography>
-          <Typography
+          {/* <Typography
             textAlign="center"
             color="text.secondary"
             sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
           >
-
-            For there is hope for a tree, If it is cut down, 
-            that it will sprout again, And that its tender shoots will not cease. 
-            Though its root may grow old in the earth, And its stump may die in the ground, 
-            Yet at the scent of water it will bud And bring forth branches like a plant.. <br></br>
+            For there is hope for a tree, If it is cut down, that it will sprout again,
+            And that its tender shoots will not cease.
+            Though its root may grow old in the earth, And its stump may die in the ground,
+            Yet at the scent of water it will bud And bring forth branches like a plant..
+            <br />
             Job 14:7-9
-
-
-          </Typography>
-          {/* <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            alignSelf="center"
-            spacing={1}
-            useFlexGap
-            sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
-          >
-            <TextField
-              id="outlined-basic"
-              hiddenLabel
-              size="small"
-              variant="outlined"
-              aria-label="Enter your email address"
-              placeholder="Your email address"
-              inputProps={{
-                autoComplete: 'off',
-                'aria-label': 'Enter your email address',
-              }}
-            />
-            <Button variant="contained" color="primary">
-              Start now
-            </Button>
-          </Stack>
-          <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>
-            By clicking &quot;Start now&quot; you agree to our&nbsp;
-            <Link href="#" color="primary">
-              Terms & Conditions
-            </Link>
-            .
           </Typography> */}
+          <DemoPaper sx={{mt : 8}}>
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: 'clamp(1.5rem, 5vw, 1.5rem)',
+                color: (theme) =>
+                  theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
+                textAlign: 'center',
+              }}
+            >
+              For there is hope for a tree, If it is cut down, that it will sprout again,
+              And that its tender shoots will not cease.
+              Though its root may grow old in the earth, And its stump may die in the ground,
+              Yet at the scent of water it will bud And bring forth branches like a plant..
+              <br />
+              Job 14:7-9
+            </Typography>
+          </DemoPaper>
+          <Typography
+            component="span"
+            variant="h1"
+            sx={{
+              fontSize: 'clamp(2rem, 5vw, 2rem)',
+              color: (theme) =>
+                theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
+              textAlign: 'center',
+            }}
+          >
+            Saint of Water Parish
+          </Typography>
         </Stack>
         <Box>
-        <img
-              src={sowlogo}
-              style={logoStyle}
-              alt="logo of saint of water parish"
-              />
+          <img
+            src={sowlogo}
+            style={logoStyle}
+            alt="logo of saint of water parish"
+          />
         </Box>
-        <Box
+        {/* <Box
           id="image"
           sx={(theme) => ({
             mt: { xs: 8, sm: 10 },
@@ -141,7 +124,7 @@ export default function Hero() {
                 ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
                 : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
           })}
-        />
+        /> */}
       </Container>
     </Box>
   );
