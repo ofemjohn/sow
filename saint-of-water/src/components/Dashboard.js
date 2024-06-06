@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { Box, Button, TextField, Typography, CircularProgress } from '@mui/material';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { storage } from './Config';
@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [imgUploadSuccess, setImgUploadSuccess] = useState(false);
   const [videoUploadSuccess, setVideoUploadSuccess] = useState(false);
   const [bulletinUploadSuccess, setBulletinUploadSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -27,82 +28,56 @@ const Dashboard = () => {
     }
   };
 
-  const handleImageUpload = () => {
-    if (img) {
-      const imgRef = ref(storage, `images/${uuidv4()}`);
-      uploadBytes(imgRef, img).then(snapshot => {
-        getDownloadURL(snapshot.ref).then(url => {
-          setImgUploadSuccess(true);
-          setVideoUploadSuccess(false);
-          setBulletinUploadSuccess(false);
-          setError(null);
-        }).catch(error => {
-          setImgUploadSuccess(false);
-          setVideoUploadSuccess(false);
-          setBulletinUploadSuccess(false);
-          setError('Error getting download URL for image');
-          console.error('Error getting download URL for image', error);
-        });
-      }).catch(error => {
-        setImgUploadSuccess(false);
-        setVideoUploadSuccess(false);
-        setBulletinUploadSuccess(false);
-        setError('Error uploading image');
-        console.error('Error uploading image', error);
-      });
+  const uploadFile = (file, fileType, setSuccess) => {
+    if (file) {
+      setLoading(true);
+      const fileRef = ref(storage, `${fileType}/${uuidv4()}`);
+      const uploadTask = uploadBytesResumable(fileRef, file);
+
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          // You can add progress tracking here if needed
+        },
+        (error) => {
+          setLoading(false);
+          setError(`Error uploading ${fileType}`);
+          console.error(`Error uploading ${fileType}`, error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            setLoading(false);
+            setSuccess(true);
+            setError(null);
+          }).catch((error) => {
+            setLoading(false);
+            setError(`Error getting download URL for ${fileType}`);
+            console.error(`Error getting download URL for ${fileType}`, error);
+          });
+        }
+      );
     }
+  };
+
+  const handleImageUpload = () => {
+    setImgUploadSuccess(false);
+    setVideoUploadSuccess(false);
+    setBulletinUploadSuccess(false);
+    uploadFile(img, 'images', setImgUploadSuccess);
   };
 
   const handleVideoUpload = () => {
-    if (video) {
-      const videoRef = ref(storage, `videos/${uuidv4()}`);
-      uploadBytes(videoRef, video).then(snapshot => {
-        getDownloadURL(snapshot.ref).then(url => {
-          setVideoUploadSuccess(true);
-          setImgUploadSuccess(false);
-          setBulletinUploadSuccess(false);
-          setError(null);
-        }).catch(error => {
-          setVideoUploadSuccess(false);
-          setImgUploadSuccess(false);
-          setBulletinUploadSuccess(false);
-          setError('Error getting download URL for video');
-          console.error('Error getting download URL for video', error);
-        });
-      }).catch(error => {
-        setVideoUploadSuccess(false);
-        setImgUploadSuccess(false);
-        setBulletinUploadSuccess(false);
-        setError('Error uploading video');
-        console.error('Error uploading video', error);
-      });
-    }
+    setImgUploadSuccess(false);
+    setVideoUploadSuccess(false);
+    setBulletinUploadSuccess(false);
+    uploadFile(video, 'videos', setVideoUploadSuccess);
   };
 
   const handleBulletinImageUpload = () => {
-    if (bulletin) {
-      const bulletinRef = ref(storage, `bulletins/${uuidv4()}`);
-      uploadBytes(bulletinRef, bulletin).then(snapshot => {
-        getDownloadURL(snapshot.ref).then(url => {
-          setBulletinUploadSuccess(true);
-          setImgUploadSuccess(false);
-          setVideoUploadSuccess(false);
-          setError(null);
-        }).catch(error => {
-          setBulletinUploadSuccess(false);
-          setImgUploadSuccess(false);
-          setVideoUploadSuccess(false);
-          setError('Error getting download URL for bulletin image');
-          console.error('Error getting download URL for bulletin image', error);
-        });
-      }).catch(error => {
-        setBulletinUploadSuccess(false);
-        setImgUploadSuccess(false);
-        setVideoUploadSuccess(false);
-        setError('Error uploading bulletin image');
-        console.error('Error uploading bulletin image', error);
-      });
-    }
+    setImgUploadSuccess(false);
+    setVideoUploadSuccess(false);
+    setBulletinUploadSuccess(false);
+    uploadFile(bulletin, 'bulletins', setBulletinUploadSuccess);
   };
 
   return (
@@ -139,6 +114,11 @@ const Dashboard = () => {
         </Button>
         {bulletinUploadSuccess && <Typography variant="body1" sx={{ mt: 1, color: 'green' }}>Bulletin image uploaded successfully!</Typography>}
       </Box>
+      {loading && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+          <CircularProgress />
+        </Box>
+      )}
       {error && <Typography variant="body1" sx={{ mt: 1, color: 'red' }}>{error}</Typography>}
     </Box>
   );
