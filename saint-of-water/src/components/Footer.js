@@ -5,23 +5,24 @@ import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import sowlogo from '../images/sowlogo.png';
+import FacebookSharpIcon from '@mui/icons-material/FacebookSharp';
+import { FaYoutube } from "react-icons/fa";
+import { FaSquareInstagram } from "react-icons/fa6";
 
-import FacebookIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/X';
+
 
 const logoStyle = {
-  width: '140px',
-  height: 'auto',
+  width: '50px',
+  height: '40px',
+  marginLeft: '25px'
 };
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
-      {'Copyright © '}
-      <Link href="https://mui.com/">Sitemark&nbsp;</Link>
+      {'Copyright © '}RCCG-SOW&nbsp;
       {new Date().getFullYear()}
     </Typography>
   );
@@ -58,104 +59,59 @@ export default function Footer() {
           <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
             <Box sx={{ ml: '-15px' }}>
               <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
+                src={sowlogo}
                 style={logoStyle}
                 alt="logo of sitemark"
               />
             </Box>
             <Typography variant="body2" fontWeight={600} gutterBottom>
-              Newsletter
+              Contact Us
             </Typography>
             <Typography variant="body2" color="text.secondary" mb={2}>
-              Subscribe to our newsletter for weekly updates and promotions.
+              Send us an email for any inquiries or information.
             </Typography>
-            <Stack direction="row" spacing={1} useFlexGap>
-              <TextField
-                id="outlined-basic"
-                hiddenLabel
-                size="small"
-                variant="outlined"
-                fullWidth
-                aria-label="Enter your email address"
-                placeholder="Your email address"
-                inputProps={{
-                  autoComplete: 'off',
-                  'aria-label': 'Enter your email address',
-                }}
-              />
-              <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
-                Subscribe
-              </Button>
-            </Stack>
+            <Button
+              variant="contained"
+              color="primary"
+              href="mailto:rccgsow@gmail.com"
+              sx={{ flexShrink: 0 }}
+            >
+              Send us an Email
+            </Button>
+            <Typography variant="body2" color="text.secondary" mt={1}>
+              Address: 30 Ogundana street, off Allen Avenue, Ikeja, Lagos
+            </Typography>
           </Box>
         </Box>
         <Box
           sx={{
-            display: { xs: 'none', sm: 'flex' },
+            display: 'flex',
             flexDirection: 'column',
             gap: 1,
+            minWidth: { xs: '100%', sm: '60%' },
           }}
         >
           <Typography variant="body2" fontWeight={600}>
-            Product
+            Our Location
           </Typography>
-          <Link color="text.secondary" href="#">
-            Features
-          </Link>
-          <Link color="text.secondary" href="#">
-            Testimonials
-          </Link>
-          <Link color="text.secondary" href="#">
-            Highlights
-          </Link>
-          <Link color="text.secondary" href="#">
-            Pricing
-          </Link>
-          <Link color="text.secondary" href="#">
-            FAQs
-          </Link>
-        </Box>
-        <Box
-          sx={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'column',
-            gap: 1,
-          }}
-        >
-          <Typography variant="body2" fontWeight={600}>
-            Company
-          </Typography>
-          <Link color="text.secondary" href="#">
-            About us
-          </Link>
-          <Link color="text.secondary" href="#">
-            Careers
-          </Link>
-          <Link color="text.secondary" href="#">
-            Press
-          </Link>
-        </Box>
-        <Box
-          sx={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'column',
-            gap: 1,
-          }}
-        >
-          <Typography variant="body2" fontWeight={600}>
-            Legal
-          </Typography>
-          <Link color="text.secondary" href="#">
-            Terms
-          </Link>
-          <Link color="text.secondary" href="#">
-            Privacy
-          </Link>
-          <Link color="text.secondary" href="#">
-            Contact
-          </Link>
+          <Box
+            sx={{
+              border: '1px solid',
+              borderColor: 'divider',
+              borderRadius: 1,
+              overflow: 'hidden',
+              width: '100%',
+              height: '300px',
+            }}
+          >
+            <iframe
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=3.352914%2C6.600150%2C3.358914%2C6.606150&layer=mapnik&marker=6.603150%2C3.355914"
+              allowFullScreen
+            ></iframe>
+          </Box>
         </Box>
       </Box>
       <Box
@@ -191,28 +147,36 @@ export default function Footer() {
         >
           <IconButton
             color="inherit"
-            href="https://github.com/mui"
+            href="https://www.facebook.com/scentof.waterparishikeja?mibextid=ZbWKwL"
             aria-label="GitHub"
             sx={{ alignSelf: 'center' }}
           >
-            <FacebookIcon />
+            <FacebookSharpIcon />
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://twitter.com/MaterialUI"
-            aria-label="X"
+            href="https://youtube.com/@scentofwater5530?si=OkCtAIjgHd4EB0ET"
+            aria-label="Twitter"
             sx={{ alignSelf: 'center' }}
           >
-            <TwitterIcon />
+            <FaYoutube/>
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://www.linkedin.com/company/mui/"
+            href="https://www.instagram.com/rccg_sow_parish/?target_user_id=49074130880&ndid=617e3f4dfb2beHb6d0bcfc0H617e43e75b590H53&utm_source=instagram&utm_medium=email&utm_campaign=digest_email&click_source=header_profile&__bp=1#"
             aria-label="LinkedIn"
             sx={{ alignSelf: 'center' }}
           >
-            <LinkedInIcon />
+            <FaSquareInstagram  />
           </IconButton>
+          {/* <IconButton
+            color="inherit"
+            href="https://twitter.com/MaterialUI"
+            aria-label="Twitter"
+            sx={{ alignSelf: 'center' }}
+          >
+            <FaYoutube />
+          </IconButton> */}
         </Stack>
       </Box>
     </Container>

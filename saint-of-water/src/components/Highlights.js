@@ -5,49 +5,68 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
-import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
-import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
-import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
-import SupportAgentRoundedIcon from '@mui/icons-material/SupportAgentRounded';
-import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+import LocalActivitySharpIcon from '@mui/icons-material/LocalActivitySharp';
+import ChurchOutlinedIcon from '@mui/icons-material/ChurchOutlined';
+import FoundationSharpIcon from '@mui/icons-material/FoundationSharp';
+import ContactPageTwoToneIcon from '@mui/icons-material/ContactPageTwoTone';
+import PeopleAltSharpIcon from '@mui/icons-material/PeopleAltSharp';
+import OtherHousesSharpIcon from '@mui/icons-material/OtherHousesSharp';
 
 const items = [
   {
-    icon: <SettingsSuggestRoundedIcon />,
-    title: 'Adaptable performance',
+    icon: <ChurchOutlinedIcon />,
+    title: 'Sunday Service',
     description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
+      'Our Sunday Service begines 8:15am every sunday with the Sunday School',
   },
   {
-    icon: <ConstructionRoundedIcon />,
-    title: 'Built to last',
+    icon: <ContactPageTwoToneIcon />,
+    title: 'Church Contact Lines',
     description:
-      'Experience unmatched durability that goes above and beyond with lasting investment.',
+    <React.Fragment>
+      <span style={{ color: '#fff' }}>Phone: 08081703500 and Email: rccgsow@gmail.com or info@rccgsow.org.</ span> If you are going through difficult or challenge times or you wanrt to celebrate and dedicate your house, office or vehicle, etc. Use the above contact details to inform the church and someone will be deligated to attend to you.',
+      </React.Fragment>
   },
   {
-    icon: <ThumbUpAltRoundedIcon />,
-    title: 'Great user experience',
-    description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
+    icon: <OtherHousesSharpIcon />,
+    title: 'House Fellowship Centres',
+    description: (
+      <React.Fragment>
+        <span style={{ color: '#fff' }}>House of Victor:</span> 11 Mathew Street, Pero Bus Stop Agege (5 - 6pm)<br />
+        <span style={{ color: '#fff' }}>House of Praise:</span> No 7 Freedom Paris, Oke-Apa Magboro Ogun State (5 - 6pm)<br />
+        <span style={{ color: '#fff' }}>House of Prayer:</span> 30 Ogundana street, off Allen Avenue, Ikeja, Lagos (5:30 - 6:30pm) <br />
+        <span style={{ color: '#fff' }}>House Of Grace:</span> 17 Oremeta Street, Oregun (6 - 7pm)
+      </React.Fragment>
+    ),
+    
   },
   {
-    icon: <AutoFixHighRoundedIcon />,
-    title: 'Innovative functionality',
-    description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+    icon: <LocalActivitySharpIcon />,
+    title: 'Our Weekly Activities',
+    description: (
+      <React.Fragment>
+        <span style={{ color: '#fff' }}>Sundays:</span> New Workers Training 07:00 - 08:15am<br />
+        <span style={{ color: '#fff' }}>Sundays:</span> Workers Fresh Annointing 07:30 - 8:15am<br />
+        <span style={{ color: '#fff' }}>Tuesday</span>  Digging Deep 6 - 7pm <br />
+        <span style={{ color: '#fff' }}>Wednesdayss::</span> Departmental Meetings as Scheduled <br />
+        <span style={{ color: '#fff' }}>Thursdays:</span> Faith Clinic 6 - 7pm <br />
+        <span style={{ color: '#fff' }}>fridays:</span> Departmental Meetings and Vigil (6 - 7pm) <br />
+        <span style={{ color: '#fff' }}>Saturdays:</span> Evangelism and Visitations 4 - 6pm <br />
+        <span style={{ color: '#fff' }}>Every 3rd Saturday</span> Shining Youth Fellowship Meeting 2 - 4pm
+      </React.Fragment>
+    ),
   },
   {
-    icon: <SupportAgentRoundedIcon />,
-    title: 'Reliable support',
+    icon: <PeopleAltSharpIcon />,
+    title: 'Counseling',
     description:
-      'Count on our responsive customer support, offering assistance that goes beyond the purchase.',
+      "Pastors are available for Counseling on Tuesday's and Thursday's from 5 - 6pm. Come talk to someone who will advice and pray with you over the issues you are going through",
   },
   {
-    icon: <QueryStatsRoundedIcon />,
-    title: 'Precision in every detail',
+    icon: <FoundationSharpIcon />,
+    title: 'Fasting and Prayer',
     description:
-      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
+      "Every thursday's and Ministers fasting and prayers. All workers are expected to fast and pray. The prayer point is Father, thank you for making us an ever increasing family. Please send more laborers into your vineyard in the Scent of Water in Jesus name. Amen",
   },
 ];
 
@@ -77,13 +96,11 @@ export default function Highlights() {
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
-          <Typography component="h2" variant="h4">
-            Highlights
+          <Typography component="h2" variant="h4" sx={{fontSize: '30px'}}>
+            What's Happening at Saint of Water Parish
           </Typography>
           <Typography variant="body1" sx={{ color: 'grey.400' }}>
-            Explore why our product stands out: adaptability, durability,
-            user-friendly design, and innovation. Enjoy reliable customer support and
-            precision in every detail.
+            Discover what's going on at Saint of Water Parish! We have a variety of exciting events, activities, and announcements for all ages.
           </Typography>
         </Box>
         <Grid container spacing={2.5}>

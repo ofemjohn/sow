@@ -13,7 +13,6 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
 import sowlogo from '../images/sowlogo.png'
-// import { useNavigate } from 'react-router-dom';
 
 const logoStyle = {
   width: '50px',
@@ -24,8 +23,6 @@ const logoStyle = {
 
 function AppAppBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
-
-  // const navigate = useNavigate();
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -44,10 +41,6 @@ function AppAppBar({ mode, toggleColorMode }) {
       setOpen(false);
     }
   };
-
-  // const handleLogin = () => {
-  //   navigate('/login');
-  // };
 
   return (
     <div>
@@ -92,30 +85,13 @@ function AppAppBar({ mode, toggleColorMode }) {
                 px: 0,
               }}
             >
-             <img
-              src={sowlogo}
-              style={logoStyle}
-              alt="logo of saint of water parish"
-              onClick={() => window.scrollTo(0, 0)}
+              <img
+                src={sowlogo}
+                style={logoStyle}
+                alt="logo of saint of water parish"
+                onClick={() => window.scrollTo(0, 0)}
               />
-
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                {/* <MenuItem
-                  onClick={() => scrollToSection('features')}
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Features
-                  </Typography>
-                </MenuItem>
-                <MenuItem
-                  onClick={() => scrollToSection('testimonials')}
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Testimonials
-                  </Typography>
-                </MenuItem> */}
                 <MenuItem
                   onClick={() => scrollToSection('highlights')}
                   sx={{ py: '6px', px: '12px' }}
@@ -125,19 +101,19 @@ function AppAppBar({ mode, toggleColorMode }) {
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('pricing')}
+                  onClick={() => scrollToSection('payment-info')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    Pricing
+                    Payment Info
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('faq')}
+                  onClick={() => scrollToSection('bulletin')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    FAQ
+                  Bulletin
                   </Typography>
                 </MenuItem>
               </Box>
@@ -154,10 +130,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                 color="primary"
                 variant="text"
                 size="small"
-                // component="a"
                 href="Login/"
-                // target="_blank"
-                // onClick={handleLogin}
               >
                 Admin Login
               </Button>
@@ -191,32 +164,16 @@ function AppAppBar({ mode, toggleColorMode }) {
                   >
                     <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                   </Box>
-                  <MenuItem onClick={() => scrollToSection('features')}>
-                    Features
-                  </MenuItem>
-                  <MenuItem onClick={() => scrollToSection('testimonials')}>
-                    Testimonials
-                  </MenuItem>
                   <MenuItem onClick={() => scrollToSection('highlights')}>
                     Highlights
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection('pricing')}>
-                    Pricing
+                  <MenuItem onClick={() => scrollToSection('payment-info')}>
+                    Payment Info
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection('faq')}>FAQ</MenuItem>
+                  <MenuItem onClick={() => scrollToSection('bulletin')}>
+                    Bulletin
+                    </MenuItem>
                   <Divider />
-                  <MenuItem>
-                    {/* <Button
-                      color="primary"
-                      variant="contained"
-                      component="a"
-                      href="/material-ui/getting-started/templates/sign-up/"
-                      target="_blank"
-                      sx={{ width: '100%' }}
-                    >
-                      Sign up
-                    </Button> */}
-                  </MenuItem>
                   <MenuItem>
                     <Button
                       color="primary"

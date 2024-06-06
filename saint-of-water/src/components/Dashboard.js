@@ -3,6 +3,7 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 import { initializeApp } from 'firebase/app';
+import { useNavigate } from 'react-router-dom';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -21,12 +22,13 @@ const storage = getStorage(app);
 const Dashboard = () => {
   const [img, setImg] = useState(null);
   const [video, setVideo] = useState(null);
-  const [bulletinTitle, setBulletinTitle] = useState('');
-  const [bulletinContent, setBulletinContent] = useState('');
+  const [bulletin, setBulletin] = useState(null);
+
   const [imgUploadSuccess, setImgUploadSuccess] = useState(false);
   const [videoUploadSuccess, setVideoUploadSuccess] = useState(false);
   const [bulletinUploadSuccess, setBulletinUploadSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleFileChange = (e, fileType) => {
     const file = e.target.files[0];
@@ -34,6 +36,8 @@ const Dashboard = () => {
       setImg(file);
     } else if (fileType === 'video') {
       setVideo(file);
+    } else if (fileType === 'bulletin') {
+      setBulletin(file);
     }
   };
 
@@ -89,11 +93,10 @@ const Dashboard = () => {
     }
   };
 
-  const handleBulletinUpload = () => {
-    if (bulletinTitle && bulletinContent) {
-      const bulletinRef = ref(storage, `txt/${uuidv4()}.txt`);
-      const bulletinBlob = new Blob([`Title: ${bulletinTitle}\n\nContent: ${bulletinContent}`], { type: 'text/plain' });
-      uploadBytes(bulletinRef, bulletinBlob).then(snapshot => {
+  const handleBulletinImageUpload = () => {
+    if (bulletin) {
+      const bulletinRef = ref(storage, `bulletins/${uuidv4()}`); // Store bulletin images in the 'bulletins' folder
+      uploadBytes(bulletinRef, bulletin).then(snapshot => {
         getDownloadURL(snapshot.ref).then(url => {
           setBulletinUploadSuccess(true);
           setImgUploadSuccess(false);
@@ -103,22 +106,29 @@ const Dashboard = () => {
           setBulletinUploadSuccess(false);
           setImgUploadSuccess(false);
           setVideoUploadSuccess(false);
-          setError('Error getting download URL for bulletin');
-          console.error('Error getting download URL for bulletin', error);
+          setError('Error getting download URL for bulletin image');
+          console.error('Error getting download URL for bulletin image', error);
         });
       }).catch(error => {
         setBulletinUploadSuccess(false);
         setImgUploadSuccess(false);
         setVideoUploadSuccess(false);
-        setError('Error uploading bulletin');
-        console.error('Error uploading bulletin', error);
+        setError('Error uploading bulletin image');
+        console.error('Error uploading bulletin image', error);
       });
     }
   };
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4">Image, Video, and Bulletin Upload Component</Typography>
+      <Typography variant="h4">Image, Video, and Bulletin News Upload</Typography>
+      <Button
+        variant="outlined"
+        onClick={() => navigate('/')}
+        sx={{ marginBottom: 2 }}
+      >
+        Back to Home
+      </Button>
       <Box sx={{ mt: 2 }}>
         <Typography variant="subtitle1">Upload Image:</Typography>
         <TextField type="file" onChange={(e) => handleFileChange(e, 'image')} />
@@ -135,28 +145,13 @@ const Dashboard = () => {
         </Button>
         {videoUploadSuccess && <Typography variant="body1" sx={{ mt: 1, color: 'green' }}>Video uploaded successfully!</Typography>}
       </Box>
-      <Box sx={{ mt: 3 }}>
-        <Typography variant="subtitle1">Post Bulletin:</Typography>
-        <TextField
-          label="Title"
-          value={bulletinTitle}
-          onChange={(e) => setBulletinTitle(e.target.value)}
-          fullWidth
-          sx={{ mt: 1 }}
-        />
-        <TextField
-          label="Content"
-          value={bulletinContent}
-          onChange={(e) => setBulletinContent(e.target.value)}
-          fullWidth
-          multiline
-          rows={4}
-          sx={{ mt: 1 }}
-        />
-        <Button variant="contained" color="primary" onClick={handleBulletinUpload} sx={{ mt: 1 }}>
-          Post Bulletin
+      <Box sx={{ mt: 2 }}>
+        <Typography variant="subtitle1">Upload Bulletin Image:</Typography>
+        <TextField type="file" onChange={(e) => handleFileChange(e, 'bulletin')} />
+        <Button variant="contained" color="primary" onClick={handleBulletinImageUpload} sx={{ mt: 1 }}>
+          Upload Image
         </Button>
-        {bulletinUploadSuccess && <Typography variant="body1" sx={{ mt: 1, color: 'green' }}>Bulletin posted successfully!</Typography>}
+        {bulletinUploadSuccess && <Typography variant="body1" sx={{ mt: 1, color: 'green' }}>Bulletin image uploaded successfully!</Typography>}
       </Box>
       {error && <Typography variant="body1" sx={{ mt: 1, color: 'red' }}>{error}</Typography>}
     </Box>

@@ -4,7 +4,8 @@ import './App.css';
 import LandingPage from './LandingPage';
 import SignInSide from './components/SignInSide';
 import Dashboard from './components/Dashboard';
-import Gallery from './components/Gallery';
+import Video from './components/Video'
+
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<SignInSide />} />
           <Route path="/admin" element={<Dashboard />} />
-          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/Video" element={<Video />} />
         </Routes>
       </Box>
     </Router>

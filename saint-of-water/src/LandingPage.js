@@ -7,16 +7,14 @@ import Divider from '@mui/material/Divider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AppAppBar from './components/AppAppBar';
 import Hero from './components/Hero';
-// import LogoCollection from './components/LogoCollection';
 import Highlights from './components/Highlights';
-import Pricing from './components/Pricing';
-// import Features from './components/Feature';
+import PaymentInfo from './components/PaymentInfo';
 import Gallery from './components/Gallery';
-import FAQ from './components/FAQ';
+import Bulletin from './components/Bulletin';
 import Footer from './components/Footer';
 import getLPTheme from './getLPTheme';
 
-function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
+function ToggleCustomTheme({ showCustomTheme}) {
   return (
     showCustomTheme && (
       <Box
@@ -29,7 +27,6 @@ function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
           bottom: 24,
         }}
       >
-        {/* ToggleButtonGroup and ToggleButton components removed */}
       </Box>
     )
   );
@@ -60,17 +57,17 @@ export default function LandingPage() {
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
       <Box sx={{ bgcolor: 'background.default' }}>
-        {/* <LogoCollection /> */}
         <Divider />
-        {/* <Features /> */}
         <Divider />
         <Gallery />
         <Divider />
         <Highlights />
         <Divider />
-        <Pricing />
+        <PaymentInfo />
         <Divider />
-        <FAQ />
+        <Box sx={{ bgcolor: '#2e3b4e', p: 3 }}> 
+          <Bulletin />
+        </Box>
         <Divider />
         <Footer />
       </Box>
