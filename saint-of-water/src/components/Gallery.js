@@ -21,7 +21,11 @@ const Gallery = () => {
         const imagesRef = ref(storage, 'images/');
         const imageList = await listAll(imagesRef);
         const imageUrls = await Promise.all(imageList.items.map(item => getDownloadURL(item)));
-        setImages(imageUrls);
+
+        // Ensure no duplicates by converting to a Set and back to an array
+        const uniqueImageUrls = Array.from(new Set(imageUrls));
+
+        setImages(uniqueImageUrls);
         setError(null);
       } catch (error) {
         setError('Error fetching images');

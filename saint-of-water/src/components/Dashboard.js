@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
-import {ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { storage } from './Config';
-
-
 
 const Dashboard = () => {
   const [img, setImg] = useState(null);
@@ -31,7 +29,7 @@ const Dashboard = () => {
 
   const handleImageUpload = () => {
     if (img) {
-      const imgRef = ref(storage, `images/${uuidv4()}`); // Store images in the 'images' folder
+      const imgRef = ref(storage, `images/${uuidv4()}`);
       uploadBytes(imgRef, img).then(snapshot => {
         getDownloadURL(snapshot.ref).then(url => {
           setImgUploadSuccess(true);
@@ -57,7 +55,7 @@ const Dashboard = () => {
 
   const handleVideoUpload = () => {
     if (video) {
-      const videoRef = ref(storage, `videos/${uuidv4()}`); // Store videos in the 'videos' folder
+      const videoRef = ref(storage, `videos/${uuidv4()}`);
       uploadBytes(videoRef, video).then(snapshot => {
         getDownloadURL(snapshot.ref).then(url => {
           setVideoUploadSuccess(true);
@@ -83,7 +81,7 @@ const Dashboard = () => {
 
   const handleBulletinImageUpload = () => {
     if (bulletin) {
-      const bulletinRef = ref(storage, `bulletins/${uuidv4()}`); // Store bulletin images in the 'bulletins' folder
+      const bulletinRef = ref(storage, `bulletins/${uuidv4()}`);
       uploadBytes(bulletinRef, bulletin).then(snapshot => {
         getDownloadURL(snapshot.ref).then(url => {
           setBulletinUploadSuccess(true);
