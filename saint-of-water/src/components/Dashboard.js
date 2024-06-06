@@ -1,23 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import {ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
-import { initializeApp } from 'firebase/app';
 import { useNavigate } from 'react-router-dom';
+import { storage } from './Config';
 
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDtyl24bsyqEDTAPmcb4i1-oEKeKM2HMbs",
-  authDomain: "upload-c092e.firebaseapp.com",
-  projectId: "upload-c092e",
-  storageBucket: "upload-c092e.appspot.com",
-  messagingSenderId: "90496428324",
-  appId: "1:90496428324:web:3e2725322cbffbafdd6bb1"
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
 
 const Dashboard = () => {
   const [img, setImg] = useState(null);

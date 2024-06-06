@@ -37,7 +37,7 @@ class SignInSide extends Component {
         const password = data.get('password');
       
         // Check if username and password are correct
-        if (username === 'Admin' && password === '12345') {
+        if (username === 'SOW-Admin' && password === 'SOW12345') {
           // Redirect to admin route
           window.location.href = '/admin';
         } else {

@@ -1,22 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Card, CardMedia, CardContent, Button } from '@mui/material';
-import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
-import { initializeApp } from 'firebase/app';
+import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
+import { storage } from './Config';
 
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDtyl24bsyqEDTAPmcb4i1-oEKeKM2HMbs",
-  authDomain: "upload-c092e.firebaseapp.com",
-  projectId: "upload-c092e",
-  storageBucket: "upload-c092e.appspot.com",
-  messagingSenderId: "90496428324",
-  appId: "1:90496428324:web:3e2725322cbffbafdd6bb1"
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
 
 const Video = () => {
   const [videos, setVideos] = useState([]);

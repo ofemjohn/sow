@@ -3,23 +3,9 @@ import { Box, Typography, ImageListItem, Button, CircularProgress } from '@mui/m
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
-import { initializeApp } from 'firebase/app';
+import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
-
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDtyl24bsyqEDTAPmcb4i1-oEKeKM2HMbs",
-  authDomain: "upload-c092e.firebaseapp.com",
-  projectId: "upload-c092e",
-  storageBucket: "upload-c092e.appspot.com",
-  messagingSenderId: "90496428324",
-  appId: "1:90496428324:web:3e2725322cbffbafdd6bb1"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
+import { storage } from './Config';
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
