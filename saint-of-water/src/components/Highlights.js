@@ -17,7 +17,7 @@ const items = [
     icon: <ChurchOutlinedIcon />,
     title: 'Sunday Service',
     description:
-      'Our Sunday Service begines 8:15am every sunday with the Sunday School',
+      'Our Sunday Service begines 8:15 Am every sunday with the Sunday School',
   },
   {
     icon: <ContactPageTwoToneIcon />,
@@ -32,7 +32,7 @@ const items = [
     title: 'House Fellowship Centres',
     description: (
       <React.Fragment>
-        <span style={{ color: '#fff' }}>House of Victor:</span> 11 Mathew Street, Pero Bus Stop Agege (5 - 6pm)<br />
+        <span style={{ color: '#fff' }}>House of Victory:</span> 11 Mathew Street, Pero Bus Stop Agege (5 - 6pm)<br />
         <span style={{ color: '#fff' }}>House of Praise:</span> No 7 Freedom Paris, Oke-Apa Magboro Ogun State (5 - 6pm)<br />
         <span style={{ color: '#fff' }}>House of Prayer:</span> 30 Ogundana street, off Allen Avenue, Ikeja, Lagos (5:30 - 6:30pm) <br />
         <span style={{ color: '#fff' }}>House Of Grace:</span> 17 Oremeta Street, Oregun (6 - 7pm)
@@ -48,7 +48,7 @@ const items = [
         <span style={{ color: '#fff' }}>Sundays:</span> New Workers Training 07:00 - 08:15am<br />
         <span style={{ color: '#fff' }}>Sundays:</span> Workers Fresh Annointing 07:30 - 8:15am<br />
         <span style={{ color: '#fff' }}>Tuesday</span>  Digging Deep 6 - 7pm <br />
-        <span style={{ color: '#fff' }}>Wednesdayss::</span> Departmental Meetings as Scheduled <br />
+        <span style={{ color: '#fff' }}>Wednesdays::</span> Departmental Meetings as Scheduled <br />
         <span style={{ color: '#fff' }}>Thursdays:</span> Faith Clinic 6 - 7pm <br />
         <span style={{ color: '#fff' }}>fridays:</span> Departmental Meetings and Vigil (6 - 7pm) <br />
         <span style={{ color: '#fff' }}>Saturdays:</span> Evangelism and Visitations 4 - 6pm <br />
@@ -66,7 +66,7 @@ const items = [
     icon: <FoundationSharpIcon />,
     title: 'Fasting and Prayer',
     description:
-      "Every thursday's and Ministers fasting and prayers. All workers are expected to fast and pray. The prayer point is Father, thank you for making us an ever increasing family. Please send more laborers into your vineyard in the Scent of Water in Jesus name. Amen",
+      "Every thursday's - Ministers fasting and prayers. All workers are also expected to fast and pray. Prayer point - Father, thank you for making us an ever increasing family. Please send more laborers into your vineyard in the Scent of Water in Jesus name. Amen",
   },
 ];
 

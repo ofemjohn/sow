@@ -58,7 +58,7 @@ export default function Hero() {
               textAlign: 'center',
             }}
           >
-            Saint of Water Parish
+            Scent of Water Parish
           </Typography>
         </Stack>
         <Box>
@@ -78,10 +78,7 @@ export default function Hero() {
               textAlign: 'center',
             }}
           >
-            For there is hope for a tree, If it is cut down, that it will sprout again,
-            And that its tender shoots will not cease.
-            Though its root may grow old in the earth, And its stump may die in the ground,
-            Yet at the scent of water it will bud And bring forth branches like a plant..
+            For there is hope of a tree, if it be cut down, that it shall sprout again, and that the tender branches thereof shall not cease. Though the root thereof wax old in the earth, and the stock thereof die in the ground; Yet through the scent of water it shall bud, and bring forth boughs like a plant.
             <br />
             Job 14:7-9
           </Typography>
@@ -126,7 +123,7 @@ export default function Hero() {
             4. To accomplish No. 1, Holiness will be our lifestyle<br />
             5. To accomplish No. 2 & 3, we will plant churches within five minutes walking distance in every city and town of developing countries and within five minutes of driving distance in every city and town of developed countries<br />
             <br />
-            We will pursue these objectives until every nation in the world is reached for JESUS CHRIST OUR LORD.
+            <bold>We will pursue these objectives until every nation in the world is reached for JESUS CHRIST OUR LORD.</bold>
           </Typography>
         </Box>
       </Container>
