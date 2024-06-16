@@ -97,10 +97,10 @@ export default function Highlights() {
           }}
         >
           <Typography component="h2" variant="h4" sx={{fontSize: '30px'}}>
-            What's Happening at Saint of Water Parish
+            What's Happening at Scent of Water Parish
           </Typography>
           <Typography variant="body1" sx={{ color: 'grey.400' }}>
-            Discover what's going on at Saint of Water Parish! We have a variety of exciting events, activities, and announcements for all ages.
+            Discover what's going on at Scent of Water Parish! We have a variety of exciting events, activities, and announcements for all ages.
           </Typography>
         </Box>
         <Grid container spacing={2.5}>
