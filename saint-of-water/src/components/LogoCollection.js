@@ -1,8 +1,4 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import { useTheme } from '@mui/system';
+import React, { useContext } from 'react';
 
 const whiteLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628e8573c43893fe0ace_Sydney-white.svg',
@@ -22,38 +18,27 @@ const darkLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f5ca4e548b0deb1041c33_Ankara-black.svg',
 ];
 
-const logoStyle = {
-  width: '100px',
-  height: '80px',
-  margin: '0 32px',
-  opacity: 0.7,
-};
-
 export default function LogoCollection() {
-  const theme = useTheme();
-  const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
+  // We'll use the system's dark mode preference as a fallback
+  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const logos = isDarkMode ? whiteLogos : darkLogos;
 
   return (
-    <Box id="logoCollection" sx={{ py: 4 }}>
-      <Typography
-        component="p"
-        variant="subtitle2"
-        align="center"
-        color="text.secondary"
-      >
+    <div id="logoCollection" className="py-8">
+      <p className="text-center text-sm font-semibold text-gray-600 dark:text-gray-400">
         Trusted by the best companies
-      </Typography>
-      <Grid container justifyContent="center" sx={{ mt: 0.5, opacity: 0.6 }}>
+      </p>
+      <div className="mt-2 flex flex-wrap justify-center items-center opacity-60">
         {logos.map((logo, index) => (
-          <Grid item key={index}>
+          <div key={index} className="p-4">
             <img
               src={logo}
               alt={`Fake company number ${index + 1}`}
-              style={logoStyle}
+              className="w-[100px] h-[80px] mx-8 opacity-70 transition-opacity hover:opacity-100"
             />
-          </Grid>
+          </div>
         ))}
-      </Grid>
-    </Box>
+      </div>
+    </div>
   );
 }

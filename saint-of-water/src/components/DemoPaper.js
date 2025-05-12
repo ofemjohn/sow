@@ -1,14 +1,13 @@
+import React from 'react';
 
-import { Paper } from '@mui/material';
-import { styled } from '@mui/material/styles';
-
-const DemoPaper = styled(Paper)(({ theme }) => ({
-  width: '100%',
-  padding: theme.spacing(2),
-  ...theme.typography.body1,
-  textAlign: 'center',
-  border: '1px solid',
-  borderColor: theme.palette.divider,
-}));
+const DemoPaper = ({ children, className = '' }) => {
+  return (
+    <div 
+      className={`w-full p-4 text-center border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg shadow-sm ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default DemoPaper;

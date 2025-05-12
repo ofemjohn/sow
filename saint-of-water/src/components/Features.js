@@ -1,21 +1,9 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import Chip from '@mui/material/Chip';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
-import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
-import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
+import React, { useState } from 'react';
+import { FaChevronRight, FaLaptop, FaMobileAlt, FaDesktop } from 'react-icons/fa';
 
 const items = [
   {
-    icon: <ViewQuiltRoundedIcon />,
+    icon: <FaLaptop className="w-6 h-6" />,
     title: 'Dashboard',
     description:
       'This item could provide a snapshot of the most important metrics or data points related to the product.',
@@ -23,7 +11,7 @@ const items = [
     imageDark: 'url("/static/images/templates/templates-images/dash-dark.png")',
   },
   {
-    icon: <EdgesensorHighRoundedIcon />,
+    icon: <FaMobileAlt className="w-6 h-6" />,
     title: 'Mobile integration',
     description:
       'This item could provide information about the mobile app version of the product.',
@@ -31,7 +19,7 @@ const items = [
     imageDark: 'url("/static/images/templates/templates-images/mobile-dark.png")',
   },
   {
-    icon: <DevicesRoundedIcon />,
+    icon: <FaDesktop className="w-6 h-6" />,
     title: 'Available on all platforms',
     description:
       'This item could let users know the product is available on all platforms, such as web, mobile, and desktop.',
@@ -41,7 +29,7 @@ const items = [
 ];
 
 export default function Features() {
-  const [selectedItemIndex, setSelectedItemIndex] = React.useState(0);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 
   const handleItemClick = (index) => {
     setSelectedItemIndex(index);
@@ -50,223 +38,115 @@ export default function Features() {
   const selectedFeature = items[selectedItemIndex];
 
   return (
-    <Container id="features" sx={{ py: { xs: 8, sm: 16 } }}>
-      <Grid container spacing={6}>
-        <Grid item xs={12} md={6}>
+    <div id="features" className="container mx-auto px-4 py-8 sm:py-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
           <div>
-            <Typography component="h2" variant="h4" color="text.primary">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Product features
-            </Typography>
-            <Typography
-              variant="body1"
-              color="text.secondary"
-              sx={{ mb: { xs: 2, sm: 4 } }}
-            >
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4 sm:mb-8">
               Here you can provide a brief overview of the key features of the
               product. For example, you could list the number of features, the types
               of features, add-ons, or the benefits of the features.
-            </Typography>
+            </p>
           </div>
-          <Grid container item gap={1} sx={{ display: { xs: 'auto', sm: 'none' } }}>
+
+          {/* Mobile Chips */}
+          <div className="flex flex-wrap gap-2 sm:hidden">
             {items.map(({ title }, index) => (
-              <Chip
+              <button
                 key={index}
-                label={title}
                 onClick={() => handleItemClick(index)}
-                sx={{
-                  borderColor: (theme) => {
-                    if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === index ? 'primary.light' : '';
-                    }
-                    return selectedItemIndex === index ? 'primary.light' : '';
-                  },
-                  background: (theme) => {
-                    if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === index ? 'none' : '';
-                    }
-                    return selectedItemIndex === index ? 'none' : '';
-                  },
-                  backgroundColor: selectedItemIndex === index ? 'primary.main' : '',
-                  '& .MuiChip-label': {
-                    color: selectedItemIndex === index ? '#fff' : '',
-                  },
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors
+                  ${selectedItemIndex === index 
+                    ? 'bg-primary-600 text-white' 
+                    : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+                  }`}
+              >
+                {title}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Preview Card */}
+          <div className="mt-4 sm:hidden">
+            <div className="border rounded-lg overflow-hidden dark:border-gray-700">
+              <div 
+                className="h-[280px] bg-cover bg-center"
+                style={{
+                  backgroundImage: selectedFeature.imageLight
                 }}
               />
-            ))}
-          </Grid>
-          <Box
-            component={Card}
-            variant="outlined"
-            sx={{
-              display: { xs: 'auto', sm: 'none' },
-              mt: 4,
-            }}
-          >
-            <Box
-              sx={{
-                backgroundImage: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? items[selectedItemIndex].imageLight
-                    : items[selectedItemIndex].imageDark,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                minHeight: 280,
-              }}
-            />
-            <Box sx={{ px: 2, pb: 2 }}>
-              <Typography color="text.primary" variant="body2" fontWeight="bold">
-                {selectedFeature.title}
-              </Typography>
-              <Typography color="text.secondary" variant="body2" sx={{ my: 0.5 }}>
-                {selectedFeature.description}
-              </Typography>
-              <Link
-                color="primary"
-                variant="body2"
-                fontWeight="bold"
-                sx={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  '& > svg': { transition: '0.2s' },
-                  '&:hover > svg': { transform: 'translateX(2px)' },
-                }}
-              >
-                {/* <span>Learn more</span> */}
-                <ChevronRightRoundedIcon
-                  fontSize="small"
-                  sx={{ mt: '1px', ml: '2px' }}
-                />
-              </Link>
-            </Box>
-          </Box>
-          <Stack
-            direction="column"
-            justifyContent="center"
-            alignItems="flex-start"
-            spacing={2}
-            useFlexGap
-            sx={{ width: '100%', display: { xs: 'none', sm: 'flex' } }}
-          >
+              <div className="p-4">
+                <h3 className="font-bold text-gray-900 dark:text-white">
+                  {selectedFeature.title}
+                </h3>
+                <p className="mt-1 text-gray-600 dark:text-gray-300">
+                  {selectedFeature.description}
+                </p>
+                <a href="#" className="inline-flex items-center mt-2 text-primary-600 font-medium hover:text-primary-700">
+                  <FaChevronRight className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Feature List */}
+          <div className="hidden sm:flex flex-col gap-4 w-full">
             {items.map(({ icon, title, description }, index) => (
-              <Card
+              <button
                 key={index}
-                variant="outlined"
-                component={Button}
                 onClick={() => handleItemClick(index)}
-                sx={{
-                  p: 3,
-                  height: 'fit-content',
-                  width: '100%',
-                  background: 'none',
-                  backgroundColor:
-                    selectedItemIndex === index ? 'action.selected' : undefined,
-                  borderColor: (theme) => {
-                    if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === index
-                        ? 'primary.light'
-                        : 'grey.200';
-                    }
-                    return selectedItemIndex === index ? 'primary.dark' : 'grey.800';
-                  },
-                }}
+                className={`w-full p-6 text-left border rounded-lg transition-all
+                  ${selectedItemIndex === index
+                    ? 'bg-gray-50 dark:bg-gray-800 border-primary-300 dark:border-primary-700'
+                    : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  }`}
               >
-                <Box
-                  sx={{
-                    width: '100%',
-                    display: 'flex',
-                    textAlign: 'left',
-                    flexDirection: { xs: 'column', md: 'row' },
-                    alignItems: { md: 'center' },
-                    gap: 2.5,
-                  }}
-                >
-                  <Box
-                    sx={{
-                      color: (theme) => {
-                        if (theme.palette.mode === 'light') {
-                          return selectedItemIndex === index
-                            ? 'primary.main'
-                            : 'grey.300';
-                        }
-                        return selectedItemIndex === index
-                          ? 'primary.main'
-                          : 'grey.700';
-                      },
-                    }}
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+                  <div className={`
+                    ${selectedItemIndex === index
+                      ? 'text-primary-600'
+                      : 'text-gray-400 dark:text-gray-600'
+                    }`}
                   >
                     {icon}
-                  </Box>
-                  <Box sx={{ textTransform: 'none' }}>
-                    <Typography
-                      color="text.primary"
-                      variant="body2"
-                      fontWeight="bold"
-                    >
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900 dark:text-white">
                       {title}
-                    </Typography>
-                    <Typography
-                      color="text.secondary"
-                      variant="body2"
-                      sx={{ my: 0.5 }}
-                    >
+                    </h3>
+                    <p className="mt-1 text-gray-600 dark:text-gray-300">
                       {description}
-                    </Typography>
-                    <Link
-                      color="primary"
-                      variant="body2"
-                      fontWeight="bold"
-                      sx={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        '& > svg': { transition: '0.2s' },
-                        '&:hover > svg': { transform: 'translateX(2px)' },
-                      }}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                      }}
+                    </p>
+                    <a 
+                      href="#"
+                      className="inline-flex items-center mt-2 text-primary-600 font-medium hover:text-primary-700"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <span>Learn more</span>
-                      <ChevronRightRoundedIcon
-                        fontSize="small"
-                        sx={{ mt: '1px', ml: '2px' }}
-                      />
-                    </Link>
-                  </Box>
-                </Box>
-              </Card>
+                      <FaChevronRight className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </a>
+                  </div>
+                </div>
+              </button>
             ))}
-          </Stack>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{ display: { xs: 'none', sm: 'flex' }, width: '100%' }}
-        >
-          <Card
-            variant="outlined"
-            sx={{
-              height: '100%',
-              width: '100%',
-              display: { xs: 'none', sm: 'flex' },
-              pointerEvents: 'none',
-            }}
-          >
-            <Box
-              sx={{
-                m: 'auto',
-                width: 420,
-                height: 500,
-                backgroundSize: 'contain',
-                backgroundImage: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? items[selectedItemIndex].imageLight
-                    : items[selectedItemIndex].imageDark,
+          </div>
+        </div>
+
+        {/* Desktop Preview */}
+        <div className="hidden sm:block">
+          <div className="border rounded-lg overflow-hidden dark:border-gray-700 h-full">
+            <div 
+              className="m-auto w-[420px] h-[500px] bg-contain bg-no-repeat bg-center"
+              style={{
+                backgroundImage: selectedFeature.imageLight
               }}
             />
-          </Card>
-        </Grid>
-      </Grid>
-    </Container>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

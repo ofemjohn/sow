@@ -1,21 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, CircularProgress } from '@mui/material';
-// import { initializeApp } from 'firebase/app';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from './Config';
-
-// // Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDtyl24bsyqEDTAPmcb4i1-oEKeKM2HMbs",
-//   authDomain: "upload-c092e.firebaseapp.com",
-//   projectId: "upload-c092e",
-//   storageBucket: "upload-c092e.appspot.com",
-//   messagingSenderId: "90496428324",
-//   appId: "1:90496428324:web:3e2725322cbffbafdd6bb1"
-// };
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const storage = getStorage(app);
 
 const Bulletin = () => {
   const [bulletins, setBulletins] = useState([]);
@@ -41,41 +26,45 @@ const Bulletin = () => {
     fetchImages();
   }, []);
 
-
   return (
-    <Box id="bulletin"sx={{ p: 3, maxWidth: '100%', width: '100%', margin: '0 auto', backgroundColor: '#F5F5F5', borderRadius: '15px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
-      <Typography sx={{ color: '#622967', textAlign: 'center' }} variant="h4" gutterBottom>
+    <div 
+      id="bulletin"
+      className="p-6 w-full mx-auto bg-gray-100 dark:bg-gray-800 rounded-2xl shadow-md"
+    >
+      <h2 className="text-3xl font-bold text-primary-600 text-center mb-4">
         Bulletin Board
-      </Typography>
+      </h2>
+      
       {loading ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
-          <CircularProgress />
-        </Box>
+        <div className="flex justify-center mt-5">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
+        </div>
       ) : error ? (
-        <Typography variant="body1" sx={{ color: 'red', textAlign: 'center' }}>{error}</Typography>
+        <p className="text-red-600 text-center">{error}</p>
       ) : bulletins.length > 0 ? (
-        <Box sx={{ mt: 3, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {bulletins.map((url, index) => (
-            <div key={index} style={{ marginBottom: '20px', padding: '10px', backgroundColor: '#FFF', borderRadius: '5px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }}>
+            <div 
+              key={index} 
+              className="mb-5 p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+            >
               <img
                 src={url}
                 alt={`Bulletin Board ${index + 1}`}
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  maxWidth: '100%',
-                  borderRadius: '5px',
-                }}
+                className="w-full h-auto rounded-lg"
               />
-
-              <Typography variant="caption" sx={{ mt: 1, display: 'block', textAlign: 'center' }}>Bulletin {index + 1}</Typography>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 text-center">
+                Bulletin {index + 1}
+              </p>
             </div>
           ))}
-        </Box>
+        </div>
       ) : (
-        <Typography variant="body1" sx={{ textAlign: 'center' }}>No bulletin images found.</Typography>
+        <p className="text-center text-gray-600 dark:text-gray-400">
+          No bulletin images found.
+        </p>
       )}
-    </Box>
+    </div>
   );
 };
 

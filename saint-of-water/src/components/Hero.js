@@ -1,149 +1,103 @@
 import React from 'react';
-import { alpha, Box, Container, Stack, Typography } from '@mui/material';
-import sowlogo from '../images/sowlogo.png';
-
-const logoStyle = {
-  width: '150px', // Adjusted size for better placement
-  height: 'auto',
-  cursor: 'pointer',
-  borderRadius: '50%',
-  marginTop: '20px',
-};
+import { FaChurch, FaHeart, FaGlobe, FaPrayingHands } from 'react-icons/fa';
 
 const Hero = () => {
   return (
-    <Box
-      id="hero"
-      sx={(theme) => ({
-        width: '100%',
-        backgroundImage:
-          theme.palette.mode === 'light'
-            ? 'linear-gradient(180deg, #CEE5FD, #FFF)'
-            : `linear-gradient(#02294F, ${alpha('#090E10', 0.0)})`,
-        backgroundSize: '100% 20%',
-        backgroundRepeat: 'no-repeat',
-      })}
-    >
-      <Container
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          pt: { xs: 14, sm: 20 },
-          pb: { xs: 8, sm: 12 },
-        }}
-      >
-        <Box>
-          <img
-            src={sowlogo}
-            style={logoStyle}
-            alt="logo of Scent of Water Parish"
-          />
-        </Box>
-        <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' }, textAlign: 'center' }}>
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: 'clamp(2rem, 5vw, 2rem)',
-              color: '#72AA82',
-            }}
-          >
-            The Redeemed Christian Church of God
-          </Typography>
-          <Typography
-            component="span"
-            variant="h1"
-            sx={(theme) => ({
-              fontSize: 'clamp(2rem, 5vw, 2rem)',
-              color: theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
-            })}
-          >
-            Scent of Water Parish
-          </Typography>
-        </Stack>
-        <Box
-          id="about"
-          sx={(theme) => ({
-            mt: { xs: 8, sm: 10 },
-            alignSelf: 'center',
-            width: '100%',
-            maxWidth: '1200px',
-            p: 4,
-            bgcolor: theme.palette.mode === 'light' ? 'white' : 'grey.800',
-            borderRadius: '10px',
-            boxShadow:
-              theme.palette.mode === 'light'
-                ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
-                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
-            textAlign: 'left',
-          })}
-        >
-          <Typography
-            variant="h5"
-            sx={(theme) => ({
-              fontWeight: 'bold',
-              textAlign: 'center',
-              mb: 2,
-              color: theme.palette.mode === 'light' ? 'primary.dark' : 'primary.light'
-            })}
-          >
-            About The Ministry
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 'bold', mb: 1 }}
-          >
-            History
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mb: 2 }}
-          >
-            The Scent of Water (SOW) Parish is a Mission of the RCCG Rose of Sharon Parish in Ikeja GRA, Lagos. We are part of the Apapa Family of the RCCG Region 20, Lagos Province 35 Zone and Area 009.
-            In July 2014, a team of Ministers and Workers was sent to start a parish of the church. After weeks of fasting and prayer, the parish was established at # 9 Allen Avenue, Ikeja – Lagos. The first Service of the church was held on Sunday July 13, 2014 and the inauguration service was held on January 28, 2015 under the Ministerial guidance of the Provincial Pastor, Lagos Province 35, Pastor Remi Morgan with the able support of Pastor Emeka Obiagwu, Zonal/Area Pastor, Rose of Sharon.
-            The parish grew both in numbers and anointing and the space could no longer take the teaming members. Consequently, after weeks of fasting and prayers, the Lord led us to the present location with a clear mandate and mission as articulated below. By the special grace of God, the Parish relocated and commenced services at 30 Ogundana Street, Off Allen Avenue by Hilton Hotel Bus Stop from February 1, 2016.
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 'bold', mb: 1 }}
-          >
-            Vision
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mb: 2 }}
-          >
-            In line with the Vision of The Redeemed Christian Church of God (RCCG), our Vision is:
-            <ul>
-              <li>To make heaven.</li>
-              <li>To take as many people with us.</li>
-              <li>To have a member of RCCG in every family of all nations.</li>
-              <li>To accomplish No. 1 above, holiness will be our lifestyle.</li>
-              <li>To accomplish No. 2 and 3 above, we will plant churches within five minutes walking distance in every city and town of developing countries and within five minutes driving distance in every city and town of developed countries.</li>
-              <li>We will pursue these objectives until every Nation in the world is reached for the Lord Jesus Christ.</li>
-            </ul>
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 'bold', mb: 1 }}
-          >
-            Mission
-          </Typography>
-          <Typography
-            variant="body1"
-          >
-            Our Mission is encapsulated in two scriptures:
-            <ul>
-              <li>Jeremiah 1:10 (KJV) - See, I have this day set thee over the nations and over the kingdoms, to root out, and to pull down, and to destroy, and to throw down, to build, and to plant.</li>
-              <li>Job 14: 7-9 (KJV) - For there is hope of a tree, if it be cut down, that it will sprout again, and that the tender branch thereof will not cease. Though the root thereof wax old in the earth, and the stock thereof die in the ground; Yet through the scent of water it will bud, and bring forth boughs like a plant.</li>
-            </ul>
-            Our mission is to enthrone the kingdom of God in our immediate community of Ogundana, Community Road, Ajayi Street, Allen Avenue, etc., and to bring everyone to the knowledge of the true God and His son Jesus Christ who is our Lord and Saviour.
-          </Typography>
-        </Box>
-      </Container>
-    </Box>
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-primary-900 via-primary-800 to-primary-900">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-1/2 -right-1/2 w-[100rem] h-[100rem] bg-primary-600/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-1/2 -left-1/2 w-[100rem] h-[100rem] bg-primary-400/10 rounded-full blur-3xl"></div>
+      </div>
+
+      {/* Cross Pattern */}
+      <div className="absolute inset-0" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundSize: '60px 60px'
+      }}></div>
+
+      <div className="relative container mx-auto px-4 pt-32 pb-24">
+        <div className="max-w-6xl mx-auto">
+          {/* Main Content */}
+          <div className="text-center mb-16">
+            <h2 className="text-primary-200 font-medium tracking-wider mb-4 animate-fade-in">
+              THE REDEEMED CHRISTIAN CHURCH OF GOD
+            </h2>
+            <h1 className="text-5xl sm:text-7xl font-bold text-white mb-6 tracking-tight animate-slide-up">
+              Scent of Water Parish
+            </h1>
+            <p className="text-xl text-primary-100/80 max-w-2xl mx-auto leading-relaxed animate-fade-in">
+              Join us in our mission to spread God's love and make a difference in our community.
+            </p>
+          </div>
+
+          {/* Feature Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <FeatureCard 
+              icon={<FaChurch />}
+              title="Sunday Service"
+              description="Join us every Sunday at 8:15 AM for worship and fellowship."
+            />
+            <FeatureCard 
+              icon={<FaPrayingHands />}
+              title="Weekly Activities"
+              description="Engage in our various spiritual activities throughout the week."
+            />
+            <FeatureCard 
+              icon={<FaGlobe />}
+              title="Global Mission"
+              description="Be part of our mission to reach every nation for Christ."
+            />
+          </div>
+
+          {/* Vision Section */}
+          <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 md:p-12">
+            <div className="max-w-3xl mx-auto">
+              <h3 className="text-2xl font-semibold text-white mb-6 text-center">Our Vision & Mission</h3>
+              <div className="space-y-6 text-primary-100/80">
+                <p className="leading-relaxed">
+                  In line with The Redeemed Christian Church of God's vision, we strive to:
+                </p>
+                <ul className="space-y-4">
+                  <VisionItem>Make heaven and take as many people with us</VisionItem>
+                  <VisionItem>Have a member of RCCG in every family of all nations</VisionItem>
+                  <VisionItem>Plant churches within five minutes walking distance in developing countries</VisionItem>
+                  <VisionItem>Pursue these objectives until every Nation is reached for Jesus Christ</VisionItem>
+                </ul>
+                <div className="pt-6 text-center">
+                  <button 
+                    onClick={() => document.getElementById('highlights').scrollIntoView({ behavior: 'smooth' })}
+                    className="inline-flex items-center px-6 py-3 text-sm font-medium text-primary-900 bg-primary-100 rounded-full hover:bg-white transition-colors duration-200"
+                  >
+                    Learn More About Us
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
+
+const FeatureCard = ({ icon, title, description }) => (
+  <div className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-colors duration-300">
+    <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+    <div className="relative">
+      <div className="text-primary-300 text-2xl mb-4">{icon}</div>
+      <h3 className="text-white text-lg font-semibold mb-2">{title}</h3>
+      <p className="text-primary-100/70">{description}</p>
+    </div>
+  </div>
+);
+
+const VisionItem = ({ children }) => (
+  <li className="flex items-start space-x-3">
+    <FaHeart className="flex-shrink-0 w-5 h-5 text-primary-400 mt-1" />
+    <span className="flex-1">{children}</span>
+  </li>
+);
 
 export default Hero;
 

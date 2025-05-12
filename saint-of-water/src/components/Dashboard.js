@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography, CircularProgress } from '@mui/material';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { ref as storageRef, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { storage } from './Config';
+import { FaTimes } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [img, setImg] = useState(null);
@@ -31,7 +31,7 @@ const Dashboard = () => {
   const uploadFile = (file, fileType, setSuccess) => {
     if (file) {
       setLoading(true);
-      const fileRef = ref(storage, `${fileType}/${uuidv4()}`);
+      const fileRef = storageRef(storage, `${fileType}/${uuidv4()}`);
       const uploadTask = uploadBytesResumable(fileRef, file);
 
       uploadTask.on(
@@ -81,46 +81,120 @@ const Dashboard = () => {
   };
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Typography variant="h4">Image, Video, and Bulletin News Upload</Typography>
-      <Button
-        variant="outlined"
+    <div className="p-6 max-w-6xl mx-auto">
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+        Admin Dashboard
+      </h1>
+      
+      <button
         onClick={() => navigate('/')}
-        sx={{ marginBottom: 2 }}
+        className="mb-8 px-4 py-2 border border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition-colors"
       >
         Back to Home
-      </Button>
-      <Box sx={{ mt: 2 }}>
-        <Typography variant="subtitle1">Upload Image:</Typography>
-        <TextField type="file" onChange={(e) => handleFileChange(e, 'image')} />
-        <Button variant="contained" color="primary" onClick={handleImageUpload} sx={{ mt: 1 }}>
-          Upload Image
-        </Button>
-        {imgUploadSuccess && <Typography variant="body1" sx={{ mt: 1, color: 'green' }}>Image uploaded successfully!</Typography>}
-      </Box>
-      <Box sx={{ mt: 3 }}>
-        <Typography variant="subtitle1">Upload Video:</Typography>
-        <TextField type="file" onChange={(e) => handleFileChange(e, 'video')} />
-        <Button variant="contained" color="primary" onClick={handleVideoUpload} sx={{ mt: 1 }}>
-          Upload Video
-        </Button>
-        {videoUploadSuccess && <Typography variant="body1" sx={{ mt: 1, color: 'green' }}>Video uploaded successfully!</Typography>}
-      </Box>
-      <Box sx={{ mt: 2 }}>
-        <Typography variant="subtitle1">Upload Bulletin Image:</Typography>
-        <TextField type="file" onChange={(e) => handleFileChange(e, 'bulletin')} />
-        <Button variant="contained" color="primary" onClick={handleBulletinImageUpload} sx={{ mt: 1 }}>
-          Upload Image
-        </Button>
-        {bulletinUploadSuccess && <Typography variant="body1" sx={{ mt: 1, color: 'green' }}>Bulletin image uploaded successfully!</Typography>}
-      </Box>
+      </button>
+
+      {/* Media Upload Section */}
+      <section className="mb-12 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+          Image, Video, and Bulletin Uploads
+        </h2>
+
+        <div className="space-y-8">
+          {/* Image Upload Section */}
+          <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+              Upload Image:
+            </h3>
+            <input
+              type="file"
+              onChange={(e) => handleFileChange(e, 'image')}
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
+            />
+            <button
+              onClick={handleImageUpload}
+              className="mt-3 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              Upload Image
+            </button>
+            {imgUploadSuccess && (
+              <p className="mt-2 text-green-600">Image uploaded successfully!</p>
+            )}
+          </div>
+
+          {/* Video Upload Section */}
+          <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+              Upload Video:
+            </h3>
+            <input
+              type="file"
+              onChange={(e) => handleFileChange(e, 'video')}
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
+            />
+            <button
+              onClick={handleVideoUpload}
+              className="mt-3 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              Upload Video
+            </button>
+            {videoUploadSuccess && (
+              <p className="mt-2 text-green-600">Video uploaded successfully!</p>
+            )}
+          </div>
+
+          {/* Bulletin Upload Section */}
+          <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+              Upload Bulletin Image:
+            </h3>
+            <p className="mb-3 text-gray-600 dark:text-gray-300">
+              Upload bulletin images that contain church announcements, events, and important information. These will be displayed in the Bulletin Board section.
+            </p>
+            <input
+              type="file"
+              onChange={(e) => handleFileChange(e, 'bulletin')}
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
+            />
+            <button
+              onClick={handleBulletinImageUpload}
+              className="mt-3 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              Upload Bulletin
+            </button>
+            {bulletinUploadSuccess && (
+              <p className="mt-2 text-green-600">Bulletin image uploaded successfully!</p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Loading and Error States */}
       {loading && (
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-          <CircularProgress />
-        </Box>
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl">
+            <div className="flex flex-col items-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-t-indigo-600 border-indigo-200"></div>
+              <p className="mt-4 text-gray-700 dark:text-gray-300">Processing...</p>
+            </div>
+          </div>
+        </div>
       )}
-      {error && <Typography variant="body1" sx={{ mt: 1, color: 'red' }}>{error}</Typography>}
-    </Box>
+      
+      {error && (
+        <div className="fixed bottom-4 right-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg shadow-lg z-50">
+          <div className="flex items-center gap-2">
+            <FaTimes className="w-5 h-5" />
+            <p>{error}</p>
+          </div>
+          <button 
+            className="absolute top-1 right-1 text-red-500 hover:text-red-700"
+            onClick={() => setError(null)}
+          >
+            <FaTimes className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+    </div>
   );
 };
 

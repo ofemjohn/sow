@@ -1,151 +1,219 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import { CardContent } from '@mui/material';
+import React, { useState } from 'react';
+import { 
+  FaUniversity, 
+  FaHandHoldingHeart, 
+  FaCopy, 
+  FaCheck, 
+  FaChurch, 
+  FaPrayingHands, 
+  FaGraduationCap, 
+  FaHome, 
+  FaUsers, 
+  FaTable,
+  FaChevronDown 
+} from 'react-icons/fa';
 
 const paymentInfo = [
   {
     title: 'Project/General Offering',
     accountNumber: '4011102567',
     description: 'For physical development',
+    icon: <FaHandHoldingHeart />,
+    color: 'from-emerald-500 to-green-600'
   },
   {
     title: 'Ministers Tithe',
     accountNumber: '6060464904',
     description: 'For ordained ministers',
+    icon: <FaPrayingHands />,
+    color: 'from-blue-500 to-indigo-600'
   },
   {
     title: 'General Tithe',
     accountNumber: '6060464942',
     description: 'For unordained ministers and congregation',
+    icon: <FaChurch />,
+    color: 'from-violet-500 to-purple-600'
   },
   {
     title: 'ACCMAD',
     accountNumber: '6060464942',
     description: 'For CADAM, Welfare, Christian Social Responsibility',
+    icon: <FaUsers />,
+    color: 'from-rose-500 to-pink-600'
   },
   {
     title: 'Sunday School',
     accountNumber: '6060464966',
-    description: '',
+    description: 'Support our Sunday School program',
+    icon: <FaGraduationCap />,
+    color: 'from-amber-500 to-orange-600'
   },
   {
     title: 'RCCG (SOW) Building Project',
     accountNumber: '5600507785',
     description: 'For rent and other capital projects',
+    icon: <FaHome />,
+    color: 'from-sky-500 to-cyan-600'
   },
   {
     title: 'Youth and Young Adults',
     accountNumber: '5700124129',
-    description: '',
+    description: 'Support our youth ministries',
+    icon: <FaUsers />,
+    color: 'from-teal-500 to-green-600'
   },
 ];
 
-export default function PaymentInfo() {
+const AccordionItem = ({ info, isOpen, onToggle }) => {
+  const [copySuccess, setCopySuccess] = useState(false);
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 2000);
+  };
+
   return (
-    <Container
-      id="payment-info"
-      sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: { xs: 3, sm: 6 },
-      }}
-    >
-      <Box
-        sx={{
-          width: { sm: '100%', md: '60%' },
-          textAlign: { sm: 'left', md: 'center' },
-        }}
+    <div className="border-b border-gray-200 dark:border-gray-700/50">
+      <button
+        className="w-full py-8 px-6 flex items-center justify-between text-left"
+        onClick={onToggle}
       >
-        <Typography component="h2" variant="h4" color="text.primary">
-          Church Payment Information
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-          All forms of offerings can now be paid directly into the church accounts. Please find the account details below.
-        </Typography>
-      </Box>
-      <Grid container spacing={3} alignItems="center" justifyContent="center">
-        {paymentInfo.map((info, index) => (
-          <Grid
-            item
-            key={index}
-            xs={12}
-            sm={6}
-            md={4}
-          >
-            <Card
-              sx={{
-                p: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 2,
-                border: '1px solid',
-                borderColor: 'primary.main',
-                background: 'linear-gradient(#033363, #021F3B)',
-                color: 'white',
+        <div className="flex items-center gap-6">
+          <div className={`flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r ${info.color}`}>
+            {React.cloneElement(info.icon, { className: "w-7 h-7 text-white" })}
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              {info.title}
+            </h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              {info.description}
+            </p>
+          </div>
+        </div>
+        <FaChevronDown
+          className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${
+            isOpen ? 'transform rotate-180' : ''
+          }`}
+        />
+      </button>
+
+      <div
+        className={`transition-all duration-300 ease-in-out overflow-hidden ${
+          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="px-6 pb-8 space-y-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200/70 dark:border-gray-700/50">
+            <div className="flex items-center gap-4 mb-3 md:mb-0">
+              <FaUniversity className="text-primary-600 dark:text-primary-400 w-6 h-6" />
+              <div>
+                <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                  Fidelity Bank
+                </div>
+                <div className="text-xl font-mono font-semibold text-gray-900 dark:text-white mt-1">
+                  {info.accountNumber}
+                </div>
+              </div>
+            </div>
+            
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                copyToClipboard(info.accountNumber);
               }}
+              className="flex items-center gap-2 px-4 py-2 bg-primary-50 dark:bg-primary-900/30 hover:bg-primary-100 dark:hover:bg-primary-800/50 text-primary-600 dark:text-primary-300 rounded-lg transition-colors border border-primary-200 dark:border-primary-700/50"
             >
-              <CardContent>
-                <Box
-                  sx={{
-                    mb: 1,
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Typography component="h3" variant="h6">
-                    {info.title}
-                  </Typography>
-                  <Chip
-                    icon={<AccountBalanceIcon />}
-                    label="Fidelity Bank"
-                    size="small"
-                    sx={{
-                      backgroundColor: 'primary.contrastText',
-                      '& .MuiChip-label': {
-                        color: 'primary.dark',
-                      },
-                      '& .MuiChip-icon': {
-                        color: 'primary.dark',
-                      },
-                    }}
-                  />
-                </Box>
-                <Divider
-                  sx={{
-                    my: 2,
-                    opacity: 0.2,
-                    borderColor: 'grey.500',
-                  }}
-                />
-                <Typography
-                  variant="subtitle2"
-                  sx={{ color: 'grey.200' }}
-                >
-                  Account Number: {info.accountNumber}
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  sx={{ color: 'grey.200' }}
-                >
-                  {info.description}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+              {copySuccess ? (
+                <>
+                  <FaCheck className="w-4 h-4" />
+                  <span className="font-medium">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <FaCopy className="w-4 h-4" />
+                  <span className="font-medium">Copy Number</span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function PaymentInfo() {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  return (
+    <div
+      id="payment-info"
+      className="relative py-20 sm:py-28"
+    >
+      {/* Background with gradient and subtle pattern */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0di00aC0ydjRoLTR2Mmg0djRoMnYtNGg0di0yaC00em0wLTMwVjBoLTJ2NGgtNHYyaDR2NGgyVjZoNFY0aC00ek02IDM0di00SDR2NEgwdjJoNHY0aDJ2LTRoNHYtMkg2ek02IDRWMEG0djRIMHYyaDR2NGgyVjZoNFY0SDZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-5 dark:opacity-10"></div>
+      </div>
+
+      <div className="relative container mx-auto px-4">
+        {/* Header */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-block rounded-full px-3 py-1 text-sm font-medium bg-primary-500/10 text-primary-600 dark:bg-primary-500/20 dark:text-primary-300 backdrop-blur-sm mb-4">
+            Support Our Ministry
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-primary-800 to-primary-600 dark:from-white dark:via-primary-200 dark:to-primary-400 text-transparent bg-clip-text">
+            Church Payment Information
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-blue-100/70 max-w-2xl mx-auto">
+            All forms of offerings can now be paid directly into the church accounts. Your giving supports our vision to spread God's love throughout our community.
+          </p>
+        </div>
+
+        {/* Info Cards */}
+        <div className="max-w-2xl mx-auto bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 divide-y divide-gray-200 dark:divide-gray-700/50">
+          {paymentInfo.map((info, index) => (
+            <AccordionItem
+              key={index}
+              info={info}
+              isOpen={openIndex === index}
+              onToggle={() => setOpenIndex(openIndex === index ? -1 : index)}
+            />
+          ))}
+        </div>
+        
+        {/* Additional Information */}
+        <div className="max-w-2xl mx-auto mt-10">
+          <div className="p-8 rounded-xl bg-primary-50/60 dark:bg-primary-900/30 backdrop-blur-sm border border-primary-100 dark:border-primary-700/30">
+            <h3 className="text-lg font-semibold text-primary-900 dark:text-primary-100 mb-5 flex items-center">
+              <FaTable className="mr-3 w-5 h-5" />
+              Important Notes
+            </h3>
+            <ul className="space-y-4 text-primary-800 dark:text-primary-200">
+              <li className="flex items-start">
+                <div className="flex-shrink-0 w-6 h-6 bg-primary-100 dark:bg-primary-800/50 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center mt-0.5 mr-4">
+                  <span className="text-xs font-bold">1</span>
+                </div>
+                <p>Please include your name and purpose in the payment description.</p>
+              </li>
+              <li className="flex items-start">
+                <div className="flex-shrink-0 w-6 h-6 bg-primary-100 dark:bg-primary-800/50 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center mt-0.5 mr-4">
+                  <span className="text-xs font-bold">2</span>
+                </div>
+                <p>For inquiries, contact finance@rccgsow.org</p>
+              </li>
+              <li className="flex items-start">
+                <div className="flex-shrink-0 w-6 h-6 bg-primary-100 dark:bg-primary-800/50 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center mt-0.5 mr-4">
+                  <span className="text-xs font-bold">3</span>
+                </div>
+                <p>Bank transfers and mobile banking platforms accepted.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
