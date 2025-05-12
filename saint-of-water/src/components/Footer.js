@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import sowlogo from '../images/sowlogo.png';
 import { 
   FaFacebookSquare, 
   FaYoutube, 
@@ -9,7 +8,8 @@ import {
   FaPhone, 
   FaEnvelope, 
   FaCalendarAlt, 
-  FaChevronRight
+  FaChevronRight,
+  FaChurch
 } from "react-icons/fa";
 
 function Copyright() {
@@ -68,7 +68,9 @@ export default function Footer() {
           {/* About Section */}
           <div>
             <div className="flex items-center mb-4">
-              <img src={sowlogo} className="w-12 h-10 mr-3" alt="RCCG SOW Logo" />
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary-600 to-indigo-600 flex items-center justify-center mr-3 shadow-md">
+                <FaChurch className="w-6 h-6 text-white" />
+              </div>
               <h3 className="text-xl font-bold bg-gradient-to-r from-primary-700 to-indigo-700 dark:from-primary-400 dark:to-indigo-400 text-transparent bg-clip-text">RCCG SOW Parish</h3>
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-4">

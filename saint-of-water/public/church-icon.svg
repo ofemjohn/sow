@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="248" fill="url(#grad)" />
+  
+  <!-- Church icon -->
+  <path d="M280.5 114.5V88c0-8.8-7.2-16-16-16h-16c-8.8 0-16 7.2-16 16v26.5L154 192h36v160h132V192h36l-77.5-77.5zM208 352V192h96v160H208z" fill="white"/>
+</svg> 
