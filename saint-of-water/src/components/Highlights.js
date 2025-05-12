@@ -1,22 +1,5 @@
 import React, { useState } from 'react';
-import { 
-  FaTicketAlt, 
-  FaChurch, 
-  FaBuilding, 
-  FaAddressCard, 
-  FaUsers, 
-  FaHome, 
-  FaCalendarAlt, 
-  FaPrayingHands, 
-  FaChevronDown, 
-  FaChevronUp, 
-  FaArrowRight,
-  FaTimes,
-  FaMapMarkerAlt,
-  FaPhone,
-  FaEnvelope,
-  FaDirections
-} from 'react-icons/fa';
+import { FaChurch, FaPrayingHands, FaUsers, FaMapMarkerAlt, FaPhone, FaEnvelope, FaDirections, FaTimes, FaChevronUp, FaChevronDown, FaArrowRight, FaAddressCard, FaHome, FaCalendarAlt } from 'react-icons/fa';
 
 const items = [
   {

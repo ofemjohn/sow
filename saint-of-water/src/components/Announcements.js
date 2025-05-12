@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ref as storageRef, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from './Config';
-import { FaCalendarAlt, FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaImages } from 'react-icons/fa';
+import { FaCalendarAlt, FaChevronLeft, FaChevronRight, FaExternalLinkAlt } from 'react-icons/fa';
 
 const Announcements = () => {
   const [bulletins, setBulletins] = useState([]);

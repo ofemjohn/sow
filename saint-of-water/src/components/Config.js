@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from 'firebase/storage';
-import { getDatabase, connectDatabaseEmulator } from 'firebase/database';
+import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDtyl24bsyqEDTAPmcb4i1-oEKeKM2HMbs",

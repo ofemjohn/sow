@@ -9,8 +9,7 @@ import {
   FaPhone, 
   FaEnvelope, 
   FaCalendarAlt, 
-  FaChevronRight,
-  FaHeart
+  FaChevronRight
 } from "react-icons/fa";
 
 function Copyright() {

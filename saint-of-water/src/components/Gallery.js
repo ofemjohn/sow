@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
-import { useNavigate } from 'react-router-dom';
 import { storage } from './Config';
 import { FaImages, FaVideo, FaTimes, FaChevronLeft, FaChevronRight, FaPlay } from 'react-icons/fa';
 
@@ -17,7 +16,6 @@ const Gallery = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState('images'); // 'images' or 'videos'
-  const navigate = useNavigate();
 
   // Calculate pagination values
   const totalPages = Math.ceil(
@@ -89,13 +87,13 @@ const Gallery = () => {
     document.body.style.overflow = 'auto';
   };
 
-  const navigateImage = (direction) => {
+  const navigateImage = useCallback((direction) => {
     let newIndex = selectedIndex + direction;
     if (newIndex < 0) newIndex = images.length - 1;
     if (newIndex >= images.length) newIndex = 0;
     setSelectedIndex(newIndex);
     setSelectedImage(images[newIndex]);
-  };
+  }, [selectedIndex, images]);
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -119,7 +117,7 @@ const Gallery = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImage, selectedVideo, selectedIndex, images]);
+  }, [selectedImage, selectedVideo, selectedIndex, images, navigateImage]);
 
   // Handle page navigation
   const goToPage = (page) => {
