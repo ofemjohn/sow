@@ -51,8 +51,8 @@ export default function Footer() {
 
   const serviceSchedule = [
     { day: 'Sunday', name: 'Sunday Service', time: '9:00 AM - 11:30 AM' },
-    { day: 'Tuesday', name: 'Bible Study', time: '6:30 PM - 8:00 PM' },
-    { day: 'Thursday', name: 'Prayer Meeting', time: '6:30 PM - 8:00 PM' },
+    { day: 'Tuesday', name: 'Bible Study', time: '6:00 PM - 7:00 PM' },
+    { day: 'Thursday', name: 'Prayer Meeting', time: '6:00 PM - 7:00 PM' },
     { day: 'Last Friday', name: 'Holy Ghost Night', time: '10:00 PM - 1:00 AM' },
   ];
 
